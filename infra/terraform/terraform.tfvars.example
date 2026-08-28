@@ -1,0 +1,21 @@
+# Copy to terraform.tfvars and fill in real values, OR export each as
+# TF_VAR_<name> (preferred for secrets — keeps them out of any file on disk).
+# terraform.tfvars is gitignored; this .example file is the only one committed.
+
+cloudflare_api_token   = "" # Zero Trust + DNS edit scope on the target zone only
+cloudflare_account_id  = ""
+cloudflare_zone_id     = ""
+base_domain            = "example.test" # use a domain you actually control
+
+aws_region  = "us-east-1"
+name_prefix = "zin"
+
+allowed_emails         = ["you@example.test"]
+allowed_google_domain  = null # or "yourcompany.com" to allow any user on that Workspace
+
+github_oauth_client_id     = ""
+github_oauth_client_secret = ""
+google_oauth_client_id     = ""
+google_oauth_client_secret = ""
+
+create_github_oidc_provider = true # false if this AWS account already has one

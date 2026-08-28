@@ -15,3 +15,43 @@ risks:
     reviewed_date: 2026-08-28
     links:
       - "docs/risks.md"
+
+  - id: RISK-0002
+    title: "Single-control security model has no compensating network-layer control"
+    category: security
+    likelihood: low
+    impact: high
+    status: accepted
+    owner: hekton
+    mitigation: "Documented as a deliberate tradeoff in docs/well-architected.md; dual-control alternative named for when this pattern doesn't fit."
+    raised_date: 2026-08-28
+    reviewed_date: 2026-08-28
+    links:
+      - "docs/risks.md"
+      - "docs/well-architected.md"
+
+  - id: RISK-0003
+    title: "No Terraform remote-state backend configured (by design, reference repo)"
+    category: operational
+    likelihood: certain
+    impact: medium
+    status: open
+    owner: hekton
+    mitigation: "infra/terraform/versions.tf and docs/well-architected.md both require a real backend before any apply."
+    raised_date: 2026-08-28
+    reviewed_date: 2026-08-28
+    links:
+      - "docs/risks.md"
+
+  - id: RISK-0004
+    title: "enable_ecs_exec increases blast radius if left on"
+    category: security
+    likelihood: low
+    impact: low
+    status: mitigated
+    owner: hekton
+    mitigation: "Defaults to false in modules/hosted-app/variables.tf."
+    raised_date: 2026-08-28
+    reviewed_date: 2026-08-28
+    links:
+      - "docs/risks.md"
