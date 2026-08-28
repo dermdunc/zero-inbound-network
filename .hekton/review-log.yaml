@@ -1,0 +1,17 @@
+review_log_version: 1
+project_name: zero-inbound-network
+created_date: 2026-08-28
+
+reviews:
+  - id: REV-0001
+    date: 2026-08-28
+    reviewer: "scaffold-project.sh"
+    review_type: scaffold
+    scope:
+      - ".hekton/project.yaml"
+      - ".hekton/governance.yaml"
+      - ".hekton/risk-register.yaml"
+    result: pending_human_review
+    findings: []
+    follow_ups:
+      - "Run scripts/governance-check.sh after first material change."
