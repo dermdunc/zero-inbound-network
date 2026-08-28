@@ -10,8 +10,11 @@ A public, sanitized reference implementation of a zero-inbound AWS network front
   bash scripts/check-prereqs.sh
   cd infra/terraform && terraform init -backend=false && terraform validate
   ```
-  (`scripts/verify-project.sh` is gitignored - a private-sibling-only dev script, not
-  present in a real clone of this repo. Do not reference it in reader-facing docs.)
+  (`scripts/verify-project.sh` is gitignored - it exists in this local working tree
+  but is not tracked, and will not be present in a real clone of this repo. It also
+  checks for `docs/local-assumptions.md`/`docs/reproducibility.md`, neither of which
+  exists in this repo, so it fails even locally. Do not reference it in reader-facing
+  docs, and do not run it as a verification step.)
 - Keep changes scoped to what was asked; note assumptions in the PR description.
 
 ## Conventions

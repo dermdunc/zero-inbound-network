@@ -25,7 +25,7 @@ appearance, race, religion, or sexual identity and orientation.
 - Other conduct which could reasonably be considered inappropriate in a professional
   setting.
 
-## Other Restrictions
+**Other Restrictions:**
 
 - Misrepresenting your identity or affiliation in a way that damages another person's
   reputation.
@@ -34,13 +34,25 @@ appearance, race, religion, or sexual identity and orientation.
 ## Reporting an Issue
 
 Report unacceptable behavior by opening an issue, or, for sensitive reports, via the
-contact method on the maintainer's GitHub profile.
+contact method on the maintainer's GitHub profile. Include what happened, when and
+where, who was involved, and any other context that would help address it.
 
 ## Addressing and Repairing Harm
 
-If a participant engages in unacceptable behavior, the maintainer may take any action
-deemed appropriate, from a private warning up to a permanent ban from participating in
-the project.
+If a participant engages in unacceptable behavior, the maintainer will determine the
+appropriate response given the impact on the community, which may include, roughly in
+order of increasing severity:
+
+1. A private, written warning, with clarity on the nature of the violation and an
+   explanation of why the behavior is unacceptable.
+2. A requirement to avoid interaction with the people involved, including unsolicited
+   interaction, for a specified period of time.
+3. A temporary ban from any interaction with the project.
+4. A permanent ban from participating in the project.
+
+Given this is a single-maintainer project, there is no separate appeals committee —
+disagreement with a decision can be raised the same way an initial report would be
+made.
 
 ## Scope
 

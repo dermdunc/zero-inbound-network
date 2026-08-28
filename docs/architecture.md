@@ -23,7 +23,7 @@ rate-limit, or exploit, because none exists.
 | Auth edge | `cloudflare_zero_trust_access_application`, `..._policy`, `..._identity_provider` (GitHub + Google) | Gates the tunnel hostname behind SSO before Cloudflare ever proxies to the tunnel |
 | CI identity | `aws_iam_openid_connect_provider`, per-app `aws_iam_role` (deploy) | GitHub Actions gets short-lived STS credentials scoped to one repo — no long-lived AWS keys |
 | Secrets | `aws_ssm_parameter` (SecureString) | Tunnel token and app secrets, read only by the task's execution role |
-| Reuse unit | `modules/hosted-app/` | Everything above except the two account-wide identity providers, as one module — a second app is one more `module` block in `main.tf` |
+| Reuse unit | `infra/terraform/modules/hosted-app/` | Everything above except the two account-wide identity providers, as one module — a second app is one more `module` block in `main.tf` |
 
 ## Data Flow
 
