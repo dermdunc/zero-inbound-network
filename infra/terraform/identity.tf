@@ -9,9 +9,15 @@
 resource "aws_iam_openid_connect_provider" "github_actions" {
   count = var.create_github_oidc_provider ? 1 : 0
 
-  url             = "https://token.actions.githubusercontent.com"
-  client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = [] # AWS no longer validates this for GitHub's provider; kept empty on purpose.
+  url            = "https://token.actions.githubusercontent.com"
+  client_id_list = ["sts.amazonaws.com"]
+
+  # thumbprint_list intentionally omitted, not set to []. It is optional+computed
+  # in the AWS provider's schema - omitting it is the supported "let the provider
+  # handle it" path; an earlier version of this resource set it to an explicit
+  # empty list, which is a different thing (an explicit non-null value can bypass
+  # the provider's own computation/defaulting) and a real apply-time failure risk,
+  # not a harmless no-op.
 }
 
 data "aws_iam_openid_connect_provider" "github_actions" {
