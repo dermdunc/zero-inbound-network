@@ -7,8 +7,11 @@ A public, sanitized reference implementation of a zero-inbound AWS network front
 - Work on a short-lived branch; never commit directly to `main`.
 - Run the verification entry point before opening a PR:
   ```bash
-  bash scripts/check-prereqs.sh && bash scripts/verify-project.sh
+  bash scripts/check-prereqs.sh
+  cd infra/terraform && terraform init -backend=false && terraform validate
   ```
+  (`scripts/verify-project.sh` is gitignored - a private-sibling-only dev script, not
+  present in a real clone of this repo. Do not reference it in reader-facing docs.)
 - Keep changes scoped to what was asked; note assumptions in the PR description.
 
 ## Conventions

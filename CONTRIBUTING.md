@@ -19,7 +19,7 @@ this add a feature."
 
 - `terraform fmt` and `terraform validate` pass with no credentials configured
   (`cd infra/terraform && terraform init -backend=false && terraform validate`).
-- Changes to the reusable module (`modules/hosted-app/`) come with a one-line
+- Changes to the reusable module (`infra/terraform/modules/hosted-app/`) come with a one-line
   explanation of what they change for every existing caller, not just the new one.
 - Docs (`docs/architecture.md`, `docs/well-architected.md`, `docs/decisions.md`)
   updated in the same PR as the code they describe, not as a follow-up.

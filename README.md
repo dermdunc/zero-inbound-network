@@ -83,4 +83,6 @@ terraform plan                    # needs real credentials from here on
 - [Decisions](docs/decisions.md)
 - [Risks](docs/risks.md)
 - [Next Actions](docs/next-actions.md)
+- [Contributing](CONTRIBUTING.md) — how to propose a change, and what to expect from a solo maintainer
+- [Code of Conduct](CODE_OF_CONDUCT.md)
 
