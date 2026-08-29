@@ -1,10 +1,5 @@
 # Zero-Inbound Network
 
-**Classification:** factory-output
-**Lifecycle:** active
-**Owner:** hekton
-**Promotion target:** `none`
-
 > A public, sanitized reference implementation of a zero-inbound AWS network fronted by Cloudflare Access, with GitHub+Google SSO and per-app Terraform module reuse
 
 ## What this is
@@ -21,7 +16,7 @@ install, no second AWS account. The pattern:
    gets a named, allow-listed person through.
 4. Give CI a **GitHub Actions OIDC** role instead of a long-lived AWS access key, scoped to
    one repo.
-5. Wrap all four of the above in one reusable Terraform module (`modules/hosted-app/`) so
+5. Wrap all four of the above in one reusable Terraform module (`infra/terraform/modules/hosted-app/`) so
    a second app is one more module block, not a second copy of the pattern.
 
 ```mermaid
@@ -56,15 +51,14 @@ minute, with no infrastructure to stand up.
 
 ## Implementation Status
 
-- Scaffolded 2026-08-28. Terraform (root + `modules/hosted-app/`) written and
+- Scaffolded 2026-08-28. Terraform (root + `infra/terraform/modules/hosted-app/`) written and
   `terraform validate`-clean; **not applied anywhere** — this repo ships as a reference to
   read and adapt, not a deploy-as-is stack. See `infra/terraform/terraform.tfvars.example`.
-
-## Documentation Contract
-
-Agents working here must inspect `.hekton/project.yaml` before structural changes, keep `docs/session-log.md` current, record meaningful design decisions in `docs/decisions.md`, and update `docs/next-actions.md` when the work queue changes.
-
-Vault mutation policy: see `vault_mutation_allowed` in `.hekton/project.yaml` (authoritative; defaults to false at scaffold time). The repo-local `mind-palace/` folder is only a mirror draft; do not write to the live vault unless `.hekton/project.yaml` says mutation is allowed and it is explicitly authorised in-session.
+- **This is a standalone example, by design.** It has no Terraform backend configured
+  (`infra/terraform/versions.tf`), no reference to any shared state bucket, and no
+  module source pointing anywhere outside this repo — clone it, and every `source =`
+  in the codebase resolves to a local relative path. Nothing here depends on, or writes
+  to, any private infrastructure this repo's author may otherwise operate.
 
 ## Quick Start
 
@@ -84,5 +78,6 @@ terraform plan                    # needs real credentials from here on
 - [Decisions](docs/decisions.md)
 - [Risks](docs/risks.md)
 - [Next Actions](docs/next-actions.md)
-- [Operating Model](docs/operating-model.md)
+- [Contributing](CONTRIBUTING.md) — how to propose a change, and what to expect from a solo maintainer
+- [Code of Conduct](CODE_OF_CONDUCT.md)
 

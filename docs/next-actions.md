@@ -10,6 +10,15 @@
       to make this public (not done yet — local commit only, per this session's scope)
 - [ ] Human: register real GitHub + Google OAuth apps and a real Cloudflare zone before
       ever running `terraform plan` against real infrastructure
+- [ ] Human: `git add infra/terraform/.terraform.lock.hcl && git commit` — dropped from
+      tracking in an earlier commit, still present on disk but untracked; agents can't
+      commit it themselves (`infra/**` is a protected path). Until this lands,
+      `docs/setup.md`'s provider-pinning note applies (a fresh clone resolves versions
+      fresh within `versions.tf`'s ranges, not necessarily identical to what was tested).
+- [ ] Address the Open Source Council's one real finding (`docs/oss-council/
+      2026-08-29-review.md`, action item 1): the "reuse story made literal" claim is
+      validated once, not demonstrated twice — either soften the claim or add a real
+      second module instantiation (rename `app.tf.example` to a real `.tf` file).
 
 ## This Week
 

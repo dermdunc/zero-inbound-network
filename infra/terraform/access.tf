@@ -6,6 +6,11 @@
 # evaluates whichever IdP the user picks against the per-app policy's
 # `include` blocks — see the hosted-app module's access.tf for how
 # allowed_emails / allowed_google_domain map onto that.
+#
+# These names ("GitHub", "Google") are not guaranteed unique or collision-free: if
+# the target Cloudflare account already has identity providers configured under
+# these names, this either fails on apply or creates unmanaged duplicates. Import
+# the existing resources instead of applying blind if that's the situation.
 
 resource "cloudflare_zero_trust_access_identity_provider" "github" {
   account_id = var.cloudflare_account_id

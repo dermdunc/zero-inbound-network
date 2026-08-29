@@ -67,20 +67,36 @@ resource "aws_ecs_cluster" "this" {
 module "example_app" {
   source = "./modules/hosted-app"
 
-  name       = "demo"
-  vpc_id     = aws_vpc.this.id
-  subnet_ids = [for s in aws_subnet.public : s.id]
-  cluster_id = aws_ecs_cluster.this.id
+  name        = "demo"
+  name_prefix = var.name_prefix
+  vpc_id      = aws_vpc.this.id
+  subnet_ids  = [for s in aws_subnet.public : s.id]
+  cluster_id  = aws_ecs_cluster.this.id
 
-  container_image = "public.ecr.aws/docker/library/nginx:latest"
+  # Pinned, not :latest - check https://hub.docker.com/_/nginx/tags for a current
+  # stable tag before reusing this block for a real app; the point being
+  # demonstrated is "pin explicitly", not this specific version.
+  container_image = "public.ecr.aws/docker/library/nginx:1.27-alpine"
   container_port  = 80
   desired_count   = 0 # off by default — see "The dark switch" in the README
+
+  # Pinned, not :latest - cloudflared is the sole component with any network
+  # exposure at all (see docs/architecture.md). Check
+  # https://github.com/cloudflare/cloudflared/releases before reusing this value.
+  cloudflared_image = "cloudflare/cloudflared:2024.10.0"
 
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_zone_id    = var.cloudflare_zone_id
   base_domain           = var.base_domain
+  github_idp_id         = cloudflare_zero_trust_access_identity_provider.github.id
+  google_idp_id         = cloudflare_zero_trust_access_identity_provider.google.id
 
   allowed_emails           = var.allowed_emails
   allowed_google_domain    = var.allowed_google_domain
   github_oidc_provider_arn = local.github_oidc_provider_arn
+  # This is a real "owner/repo" shape (github_repo's validation requires it), but a
+  # placeholder value - replace with the real repo before applying to a real app.
+  # It was previously omitted entirely, silently falling back to an unvalidated
+  # module default; that default has since been removed, so this is now required.
+  github_repo = "your-org/your-repo"
 }
