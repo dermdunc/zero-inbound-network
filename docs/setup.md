@@ -11,7 +11,10 @@ terraform validate
 ```
 
 Both commands run with no AWS or Cloudflare credentials and make no network calls
-beyond fetching the pinned providers. See the root [README](../README.md)'s Quick
+beyond fetching providers. `infra/terraform/.terraform.lock.hcl` pins the exact
+provider versions this was tested against — if your clone doesn't have it tracked,
+`terraform init` will resolve fresh versions within `versions.tf`'s `~>` ranges
+instead, which may not be identical. See the root [README](../README.md)'s Quick
 Start for the next steps (`terraform plan`/`apply`) if you intend to actually deploy
 this — read [`docs/well-architected.md`](well-architected.md) first.
 

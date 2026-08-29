@@ -27,17 +27,25 @@ default_agents:
 related_projects: []
 
 reproducibility:
-  target: "blank Hekton machine"
+  target: "blank machine, no Hekton machinery required"
   setup_mode: "scripted"
   bootstrap_script: "scripts/bootstrap-project.sh"
   prereq_script: "scripts/check-prereqs.sh"
-  verify_script: "scripts/verify-project.sh"
+  # verify_script deliberately does NOT point at scripts/verify-project.sh: that
+  # script is gitignored (never shipped to a real clone) and checks for
+  # docs/local-assumptions.md and docs/reproducibility.md, neither of which exists in
+  # this repo - it would fail even locally. The real verification for a Terraform-only
+  # repo is `cd infra/terraform && terraform init -backend=false && terraform
+  # validate`, documented in docs/setup.md, not a shell script.
+  verify_script: null
   dry_run_supported: true
   destructive_actions_allowed: false
   env_file: ".env.example"
-  local_assumptions_doc: "docs/local-assumptions.md"
+  # local_assumptions_doc / reproducibility_doc: neither file exists in this repo.
+  # docs/setup.md covers what both would have (see its own note on this).
+  local_assumptions_doc: null
   setup_doc: "docs/setup.md"
-  reproducibility_doc: "docs/reproducibility.md"
+  reproducibility_doc: null
   install_policy:
     prefer_homebrew: true
     prefer_documented_cli_commands: true

@@ -10,7 +10,7 @@ outbound-initiated Cloudflare Tunnel, gated by Cloudflare Access before any requ
 reaches AWS.
 
 Rationale in one sentence: **confidentiality here comes from having nothing to attack, not
-from attacking-resistant infrastructure** — there is no listening inbound port to scan,
+from attack-resistant infrastructure** — there is no listening inbound port to scan,
 rate-limit, or exploit, because none exists.
 
 ## Components
